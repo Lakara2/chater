@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
-import Dashboard from '../dashboard';
 
-export default function LogOutPage() {
+export default function LogOut() {
     const router = useRouter();
 
     function handleClick() {
