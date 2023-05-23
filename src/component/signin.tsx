@@ -5,9 +5,7 @@ import "../styles/signin.css"
 import { signIn } from '@/pages/api/axi';
 import { AuthContext } from '@/pages/api/authContext';
 
-const BASE_URL = 'http://localhost:8080';
-
-export default function signin() {
+export default function Signin() {
 
   const router = useRouter();
   const { setAuthUser } = useContext(AuthContext);

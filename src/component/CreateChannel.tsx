@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import CreateChannelForm from './CreateChannelForm';
 import { AuthContext } from '@/pages/api/authContext';

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Button } from 'react-bootstrap';
-import axios from 'axios';
 import usermessages from "@/pages/usermessages";
 import { fetchChannel, updateChannel } from '../api/axi';
 

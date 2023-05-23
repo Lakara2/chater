@@ -1,11 +1,8 @@
-import { AuthContext } from '@/pages/api/authContext';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
 import SignupForm from './SignupForm';
 
 const Signup: React.FC = () => {
   const router = useRouter();
-  const { setAuthUser } = useContext(AuthContext);
 
   const handleSignupSuccess = () => {
     router.push('/login');
