@@ -1,7 +1,7 @@
-// UserMessages.tsx
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import axios from 'axios';
+import { fetchUserMessages } from '../api/axi';
+import MessageList from '@/component/MessageList';
 
 const UserMessages: React.FC = () => {
   const router = useRouter();
@@ -12,28 +12,22 @@ const UserMessages: React.FC = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/messages/user/${user_id}`);
-        const messages = response.data;
+        const messages = await fetchUserMessages(user_id);
         setMessages(messages);
       } catch (error) {
         console.error('Error fetching messages:', error);
       }
     };
 
-    fetchMessages().then(r => r);
+    if (user_id) {
+      fetchMessages();
+    }
   }, [user_id]);
 
   return (
     <div>
       <h1>User Messages</h1>
-      {messages.map((message:any) => (
-        <div key={message.id}>
-          <p>Sender: {message.sender}</p>
-          <p>Date: {message.date}</p>
-          <p>Time: {message.time}</p>
-          <p>Content: {message.content}</p>
-        </div>
-      ))}
+      <MessageList messages={messages} />
     </div>
   );
 };

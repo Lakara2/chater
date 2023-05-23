@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
-import axios from 'axios';
-import { AuthContext } from '@/pages/api/context/authContext';
+import { AuthContext } from '../api/authContext';
+import { signUpUser } from '../api/axi';
 
 export const Signup: React.FC = () => {
   const router = useRouter();
@@ -11,22 +11,13 @@ export const Signup: React.FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string>('');
 
-  const BASE_URL = 'http://localhost:8080';
-
   const handleSignUp = async () => {
     try {
-      const response = await axios.post(`${BASE_URL}/users`, {
-        name,
-        email,
-        password,
-      });
-
-      const { token, user } = response.data;
+      const { token, user } = await signUpUser(name, email, password);
       setAuthUser({ token, user });
-      await router.push('/login'); // Rediriger vers la page de login après l'inscription réussie
-    } catch (error:any) {
+      await router.push('/login'); 
+      } catch (error: any) {
       if (error.response) {
-        // Erreur renvoyée par le serveur avec un code d'erreur HTTP
         if (error.response.status === 409) {
           setError('Le nom d\'utilisateur est déjà pris. Veuillez en choisir un autre.');
         } else if (error.response.status === 400) {
@@ -35,7 +26,6 @@ export const Signup: React.FC = () => {
           setError('Une erreur s\'est produite lors de l\'inscription.');
         }
       } else {
-        // Erreur inattendue
         setError('Une erreur s\'est produite lors de l\'inscription.');
       }
     }
@@ -89,7 +79,7 @@ export const Signup: React.FC = () => {
                   />
                 </div>
                 <button type="submit" className="btn btn-primary">
-                  S inscrire
+                  S'inscrire
                 </button>
               </form>
             </div>

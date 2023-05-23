@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { AuthContext } from '@/pages/api/context/authContext';
-import Profile from '../Profile';
+import { AuthContext } from '../api/authContext';
+import Profile from "../../component/Profile"
 
 const CreateChannel: React.FC = () => {
   const { authUser } = useContext(AuthContext);
@@ -96,3 +96,5 @@ const CreateChannel: React.FC = () => {
 };
 
 export default CreateChannel;
+
+

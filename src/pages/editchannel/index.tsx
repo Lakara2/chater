@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import usermessages from "@/pages/usermessages";
+import { fetchChannel, updateChannel } from '../api/axi';
 
 const EditChannel: React.FC = () => {
   const router = useRouter();
@@ -11,11 +12,19 @@ const EditChannel: React.FC = () => {
   const [channelName, setChannelName] = useState('');
   const [channelType, setChannelType] = useState('');
 
+  const resetForm = () => {
+    setChannelName('');
+    setChannelType('');
+  };
+  
+  const redirectToChatPage = async () => {
+    await router.push(`/channel/${channel_id}`);
+  };
+  
   useEffect(() => {
-    const fetchChannel = async () => {
+    const fetchChannelData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/channels/${channel_id}`);
-        const channel = response.data;
+        const channel = await fetchChannel(channel_id);
         setChannelName(channel.name);
         setChannelType(channel.type);
       } catch (error) {
@@ -23,17 +32,8 @@ const EditChannel: React.FC = () => {
       }
     };
 
-    fetchChannel().then(() => usermessages);
+    fetchChannelData().then(() => usermessages);
   }, [channel_id]);
-
-  const resetForm = () => {
-    setChannelName('');
-    setChannelType('');
-  };
-
-  const redirectToChatPage = async () => {
-    await router.push(`/channel/${channel_id}`);
-  };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -44,7 +44,7 @@ const EditChannel: React.FC = () => {
         type: channelType
       };
 
-      await axios.put(`http://localhost:8080/api/channels/${channel_id}`, updatedChannel);
+      await updateChannel(channel_id, updatedChannel);
 
       resetForm();
       await redirectToChatPage();
@@ -89,3 +89,5 @@ const EditChannel: React.FC = () => {
 };
 
 export default EditChannel;
+
+
