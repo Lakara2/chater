@@ -1,31 +1,16 @@
 import axios from 'axios';
+import { LoginDataType, UserData } from '../../../utils/types';
 
 const BASE_URL = 'http://localhost:8080';
 
-export const signIn = async (email: string, password: string) => {
+export const signIn = async (data:LoginDataType) => {
   try {
-    const response = await axios.post(`${BASE_URL}/users/login`, {
-      email,
-      password,
-    });
-
-    return response.data;
+    const response = await axios.post<UserData>(`${BASE_URL}/users/login`, data);
+    return response
   } catch (error) {
     throw new Error('Adresse e-mail ou mot de passe incorrect');
   }
 };
-
-export const fetchChannels = async () => {
-  try {
-    const response = await axios.get(`${BASE_URL}/channel`);
-    const { channels } = response.data;
-    return channels;
-  } catch (error) {
-    console.error("Une erreur s'est produite lors de la récupération des channels", error);
-    throw error;
-  }
-};
-
 
 export const fetchChannelMessages = async (channelId: string) => {
   try {
@@ -51,7 +36,6 @@ export const signup = async (name: string, email: string, password: string) => {
   }
 };
 
-
 export const createChannel = async (newChannel: any, token: any) => {
   try {
     const response = await axios.post(`${BASE_URL}/channel`, newChannel, {
@@ -64,6 +48,22 @@ export const createChannel = async (newChannel: any, token: any) => {
     return response.data.id;
   } catch (error) {
     throw new Error("Une erreur s'est produite lors de la création du channel.");
+  }
+};
+
+export const fetchChannels = async ( token: any) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/channel` ,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    const { channels } = response.data;
+    return channels;
+  } catch (error) {
+    console.error("Une erreur s'est produite lors de la récupération des channels", error);
+    throw error;
   }
 };
 
@@ -85,6 +85,18 @@ export const updateChannel = async (channelId: string | string[] | undefined, up
   }
 };
 
+export const postMessage = async (userId: string, messageContent: string) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/messages`, {
+      userId,
+      messageContent,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error posting message:', error);
+    throw error;
+  }
+};
 
 export const fetchUserMessages = async (userId: any) => {
   try {
@@ -95,7 +107,6 @@ export const fetchUserMessages = async (userId: any) => {
     throw error;
   }
 };
-
 export const createUser = async (userData: any) => {
   try {
     const response = await axios.post(`${BASE_URL}/api/users`, userData);
@@ -113,5 +124,15 @@ export const fetchChannel = async (channelId: string | string[] | undefined) => 
   } catch (error) {
     console.error('Error fetching channel:', error);
     throw new Error('Error fetching channel');
+  }
+};
+
+export const postList = async (listData: any) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/api/lists`, listData);
+    return response.data;
+  } catch (error) {
+    console.error('Error posting list:', error);
+    throw error;
   }
 };

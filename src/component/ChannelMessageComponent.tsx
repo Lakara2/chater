@@ -25,17 +25,17 @@ const ChannelMessageComponent: React.FC = () => {
   }, [channel_id]);
 
   return (
-    <div>
-      <h1>Channel Messages</h1>
-      {messages.map((message) => (
-        <div key={message.id}>
-          <p>Sender: {message.sender}</p>
-          <p>Date: {message.date}</p>
-          <p>Time: {message.time}</p>
-          <p>Content: {message.content}</p>
-        </div>
-      ))}
-    </div>
+      <div>
+        <h1>Channel Messages</h1>
+        {messages.map((message) => (
+          <div key={message.id}>
+            <p>Sender: {message.sender}</p>
+            <p>Date: {message.date}</p>
+            <p>Time: {message.time}</p>
+            <p>Content: {message.content}</p>
+          </div>
+        ))}
+      </div>
   );
 };
 

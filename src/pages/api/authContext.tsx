@@ -1,5 +1,6 @@
-import React, {createContext, useEffect, useState} from 'react';
+/** import React, {createContext, useEffect, useState} from 'react';
 import axios from 'axios';
+import { AuthContextProps, AuthProviderProps, AuthUser, UserData } from '../../../utils/types';
 
 export const createAuthorizedRequest = (accessToken: string) => {
   return axios.create({
@@ -10,35 +11,11 @@ export const createAuthorizedRequest = (accessToken: string) => {
   });
 };
 
-type User = {
-  id: number;
-  name: string;
-  email: string;
-  bio?: string;
-  token: string;
-  status: boolean;
-};
-
-type AuthUser = {
-  user: User | null;
-  token: string | null;
-};
-
-type AuthContextProps = {
-  authUser: AuthUser;
-  setAuthUser: React.Dispatch<React.SetStateAction<AuthUser>>;
-  user: User | null;
-};
-
 export const AuthContext = createContext<AuthContextProps>({
   authUser: { user: null, token: null },
   setAuthUser: () => {},
   user: null,
 });
-
-type AuthProviderProps = {
-  children: React.ReactNode;
-};
 
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
@@ -48,7 +25,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // Vérifier si l'utilisateur est déjà authentifié
     const checkAuth = async () => {
       try {
-        const response = await axios.get<User>('/user');
+        const response = await axios.get<UserData>('/user');
         const user = response.data;
         setAuthUser({ user, token: localStorage.getItem('token') });
       } catch (error) {
@@ -65,4 +42,4 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
+}; */

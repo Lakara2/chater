@@ -1,8 +1,5 @@
 import React from 'react';
-
-interface MessageDisplayProps {
-  messages: string[];
-}
+import { MessageDisplayProps } from '../../../utils/types';
 
 const MessageDisplay: React.FC<MessageDisplayProps> = ({ messages }) => {
   return (

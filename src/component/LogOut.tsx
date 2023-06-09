@@ -1,5 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Cookies from "js-cookie";
+
 
 const LogOut = () => {
   const router = useRouter();
@@ -8,16 +10,17 @@ const LogOut = () => {
     router.push('login').then((r) => r);
   }
 
-  function handleSignOut() {
-    localStorage.removeItem('token');
-    console.log(localStorage);
+
+  const handleSignOut = async () => {
+    Cookies.remove("jwt");
+    await router.push("/login");
     handleClick();
   }
 
   return (
     <div className="container">
       <div className="row">
-        <button onClick={handleSignOut} className="btn btn-secondary">
+        <button onClick={handleSignOut} className="btn btn-danger">
           Se déconnecter
         </button>
       </div>

@@ -1,9 +1,14 @@
-import Signin from '@/component/signin';
+import Signin from '@/component/Signin';
 import React from 'react';
 
 const Login: React.FC = () => {
-  return (
-    <Signin/>
+  return (<>
+    <div className="container">
+      <div className="row">
+        <Signin/>
+      </div>
+    </div>
+      </>
     )
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import MessageDisplay from './MessageDisplay';
 import MessageInput from './MessageInput';
-import { AuthContext } from '@/pages/api/context/authContext';
+import {AuthContext} from "@/pages/api/authContext";
 
 const DiscussionPage: React.FC = () => {
   const { authUser } = useContext(AuthContext);

@@ -1,17 +1,21 @@
 import React from 'react';
 
-const MessageList: React.FC<{ messages: any[] }> = ({ messages }) => {
+type MessageListProps = {
+  messages: { content: string; timestamp: number; viewed: boolean }[];
+};
+
+const MessageList: React.FC<MessageListProps> = ({ messages }) => {
   return (
-    <div>
-      {messages.map((message: any) => (
-        <div key={message.id}>
-          <p>Sender: {message.sender}</p>
-          <p>Date: {message.date}</p>
-          <p>Time: {message.time}</p>
-          <p>Content: {message.content}</p>
-        </div>
+    <ul className="message-list">
+      {messages.map((message, index) => (
+        <li key={index} className={`message-item${message.viewed ? ' viewed' : ''}`}>
+          <span className="message-content">{message.content}</span>
+          <span className="message-time">
+            {new Date(message.timestamp).toLocaleString()}
+          </span>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

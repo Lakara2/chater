@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { Form, Button } from 'react-bootstrap';
 import usermessages from "@/pages/usermessages";
 import { fetchChannel, updateChannel } from '../api/axi';
+import { AuthProvider } from '../api/authContext';
 
 const EditChannel: React.FC = () => {
   const router = useRouter();

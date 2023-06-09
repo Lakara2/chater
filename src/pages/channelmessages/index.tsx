@@ -3,7 +3,9 @@ import ChannelMessageComponent from '@/component/ChannelMessageComponent';
 
 const ChannelMessages: React.FC = () => {
   return (
-    <><ChannelMessageComponent/></>
+    <>
+        <ChannelMessageComponent/>
+    </>
   );
 };
 

@@ -1,11 +1,5 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-
-type MessageInputProps = {
-  newMessage: string;
-  setNewMessage: React.Dispatch<React.SetStateAction<string>>;
-  sendMessage: () => void;
-  disabled: boolean;
-};
+import React, { ChangeEvent, FormEvent } from 'react';
+import { MessageInputProps } from '../../../utils/types';
 
 const MessageInput: React.FC<MessageInputProps> = ({
   newMessage,
