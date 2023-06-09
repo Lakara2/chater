@@ -2,7 +2,7 @@ export type LoginDataType = {
     email:string;
     password:string;
   }
-  
+ 
 export type AuthUser = {
     user: UserData | null;
     token: string | null;
@@ -57,17 +57,17 @@ export type MessageInputProps = {
 };
 
 export interface Channel {
-  id: number;
-  name: string;
-  type: string;
-  user_id: number;
-  created_at: string;
+  id?: number;
+  name?: string;
+  type?: string;
+  user_id?: number;
+  created_at?: string;
 }
 
 export type newChannel = {
-  name: string;
-  type: string;
-  members: string;
+  name?: string;
+  type?: string;
+  members?: string;
 };
 
 export interface CreateChannelProps {
@@ -75,3 +75,21 @@ export interface CreateChannelProps {
     token: string;
   };
 }
+
+export type CreateChannelDataType = {
+  name?: string;
+  type?: string;
+  members?: number[];
+}
+
+export type CreateChannelInputType = {
+  channelName?: string;
+  type?: string;
+  members?: string;
+}
+
+export type CreateChannelType = {
+  name: string;
+  type: string;
+  members: number[];
+};

@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import axios  from "axios";
 
 const getData = async (url:string, context:any) =>  {
+
     const BASE_URL = 'http://localhost:8080';
 
     const token = context.req.cookies.jwt;
@@ -45,7 +46,7 @@ export const getChannelData: GetServerSideProps = async (context) => {
         console.error(error)
         return {
             redirect: {
-                destination: "/login",
+                destination: "/channel/create",
                 permanent: false,
             }
         }

@@ -46,7 +46,9 @@ export const createChannel = async (newChannel: any, token: any) => {
     });
 
     return response.data.id;
-  } catch (error) {
+  }
+   catch (error) 
+   {
     throw new Error("Une erreur s'est produite lors de la création du channel.");
   }
 };

@@ -6,15 +6,9 @@ import Cookies from "js-cookie";
 const LogOut = () => {
   const router = useRouter();
 
-  function handleClick() {
-    router.push('login').then((r) => r);
-  }
-
-
   const handleSignOut = async () => {
-    Cookies.remove("jwt");
-    await router.push("/login");
-    handleClick();
+    Cookies.remove("jwt")
+    await router.push('login');
   }
 
   return (

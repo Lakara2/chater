@@ -18,7 +18,7 @@ export default function Navbars() {
             <a className="nav-link" href="/channel">Channel</a>
           </li>
           <li>
-            <a className="nav-link" href="/createchannel">Create Channel</a>
+            <a className="nav-link" href="/channel/create">Create Channel</a>
           </li>
         </ul>
         <form>

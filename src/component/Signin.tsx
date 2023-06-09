@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 
 export default function Signin() {
+
 const {
   register,
   handleSubmit,
@@ -26,6 +27,7 @@ const onSubmit = async (data:LoginDataType) => {
     await router.push("/profile")
   }
 }
+
   return (
     <>
       <main className="form-signin">
